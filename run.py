@@ -13,6 +13,7 @@ class MyChat():
                     'maximum_similarity_threshold': 0.50
                 }
             ],
+            database_uri='sqlite:///db.sqlite3',
             read_only=True
         )
 

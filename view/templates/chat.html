@@ -95,12 +95,12 @@
                 }else {
                     showMsg(text.value);
                     // post('/', {words: text.value});
-                    // $.post('/get_response', {words: text.value}, function(result) {
-                    //     result = jQuery.parseJSON(result);
-                    //     role = result.role;
-                    //     showMsg(result.content);
-                    // });
-                    socket.emit('user_uttered', {message: text.value, session_id: sid});
+                    $.post('/get_response', {words: text.value}, function(result) {
+                        result = jQuery.parseJSON(result);
+                        role = result.role;
+                        showMsg(result.content);
+                    });
+                    //socket.emit('user_uttered', {message: text.value, session_id: sid});
                    
                     text.value = '';
                     // 内容过多时,将滚动条放置到最底端
