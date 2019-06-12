@@ -71,8 +71,6 @@ def getResponse(request):
         context['content'] = '很高兴为您服务'
         return render(request, 'chat.html', {'data': context})
     reply = chatbot.get_response(user_word)
-    print(user_word)
-    print(reply)
     context['content'] = reply
     # if (user_word == '你好'):
     #     context['content'] = '你好'
