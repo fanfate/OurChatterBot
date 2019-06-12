@@ -8,9 +8,7 @@ class MyChat():
             storage_adapter='chatterbot.storage.SQLStorageAdapter',
             logic_adapters=[
                 {
-                    'import_path': 'chatterbot.logic.BestMatch',
-                    'default_response': '抱歉，听不懂。',
-                    'maximum_similarity_threshold': 0.50
+                    'import_path': 'chatterbot.logic.BestMatch'
                 }
             ],
             database_uri='sqlite:///db.sqlite3',

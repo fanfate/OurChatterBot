@@ -21,6 +21,7 @@ class MyChat():
         )
         T = ChatterBotCorpusTrainer(self.chatbot)
         T.train("./data/chinese/")
+        T.train("./data/my/")
         # UT = UbuntuCorpusTrainer(self.chatbot)
         # UT.train()
 
