@@ -72,21 +72,21 @@
                 }                
             }
 
-            var socket = io.connect('http://' + "127.0.0.1:5500" );
-            var sid;
-            socket.on('connect', function() {
-                console.log("connected!");
-                socket.emit('session_request', {});
-            });
-            socket.on('session_confirm', function(data) {
-                console.log('fjh xueba');
-                console.log(data);
-                sid = data;
-            });
+            // var socket = io.connect('http://' + "127.0.0.1:5500" );
+            // var sid;
+            // socket.on('connect', function() {
+            //     console.log("connected!");
+            //     socket.emit('session_request', {});
+            // });
+            // socket.on('session_confirm', function(data) {
+            //     console.log('fjh xueba');
+            //     console.log(data);
+            //     sid = data;
+            // });
 
-            socket.on('bot_uttered', function(data) {
-                console.log(data);
-            })
+            // socket.on('bot_uttered', function(data) {
+            //     console.log(data);
+            // })
 
             btn.onclick = function(){
                 role = USER;
@@ -95,12 +95,37 @@
                 }else {
                     showMsg(text.value);
                     // post('/', {words: text.value});
-                    $.post('/get_response', {words: text.value}, function(result) {
+                    // $.post('/get_response', {words: text.value}, function(result) {
+                    //     result = jQuery.parseJSON(result);
+                    //     role = result.role;
+                    //     showMsg(result.content);
+                    // });
+                    // $.post('http://openapi.tuling123.com/openapi/api/v2', {
+                    //     perception: {
+                    //         inputText: {
+                    //             text: text.value
+                    //         },
+                    //         selfInfo: {
+                    //             location: {
+                    //                 city: '北京'
+                    //             }
+                    //         }
+                    //     },
+                    //     userInfo: {
+                    //         apiKey: '32fc4ae3f6904af5b4f4fedc60d06bcc',
+                    //         userId: '461012'
+                    //     }
+                    // }, function(res){
+                    //     console.log(res);
+                    // });
+                    //socket.emit('user_uttered', {message: text.value, session_id: sid});
+
+                    $.post('/tuling', {words: text.value}, function(result) {
                         result = jQuery.parseJSON(result);
                         role = result.role;
                         showMsg(result.content);
                     });
-                    //socket.emit('user_uttered', {message: text.value, session_id: sid});
+ 
                    
                     text.value = '';
                     // 内容过多时,将滚动条放置到最底端
@@ -135,7 +160,7 @@
             </form>
             
         </div>
-    </div
+    </div>
     <!-- <div id="webchat">
         <script src="https://storage.googleapis.com/mrbot-cdn/webchat-latest.js"></script>        
         <script>            
