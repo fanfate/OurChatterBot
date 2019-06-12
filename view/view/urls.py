@@ -23,4 +23,5 @@ urlpatterns = [
     path('hello', view.hello),
     path('', view.chatView),
     path('get_response', view.getResponse),
+    path('tuling', view.tulling),
 ]
