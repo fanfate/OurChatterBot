@@ -12,8 +12,7 @@ class MyChat():
             logic_adapters=[
                 {
                     'import_path': 'chatterbot.logic.BestMatch',
-                    'default_response': '抱歉，听不懂。',
-                    'maximum_similarity_threshold': 0.50
+                    
                 }
             ],
             database_uri='sqlite:///../db.sqlite3',
