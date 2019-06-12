@@ -1,4 +1,5 @@
 from chatterbot import ChatBot
+import hug
 
 class MyChat():
     
@@ -18,6 +19,10 @@ class MyChat():
     def get_response(self, info):
         return str(self.chatbot.get_response(info))
 
-if __name__ == '__main__':
-    chat = MyChat()
-    
+
+
+@hug.get()  
+def get_response(user_input):
+    chatbot = MyChat()
+    response = chatbot.get_response(user_input)
+    return {"response":response}
