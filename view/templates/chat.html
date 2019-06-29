@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../static/css/chat.css">
+    <link rel="stylesheet" href="/static/css/chat.css">
     <!-- <script src="../static/js/chat.js"></script> -->
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
@@ -12,7 +12,7 @@
         window.onload = function(){
             const USER = 0;
             const BOT = 1;
-            var arrIcon = ['../static/img/usr.png','../static/img/bot.png'];
+            var arrIcon = ['/static/img/usr.png','/static/img/bot.png'];
             var role = 0;     // 身份标示
             var iNow = -1;    //用来累加改变左右浮动onclick = 
             var icon = document.getElementById('user_face_icon').getElementsByTagName('img');
@@ -21,7 +21,6 @@
             var content = document.getElementsByTagName('ul')[0];
             var img = content.getElementsByTagName('img');
             var span = content.getElementsByTagName('span');
-
             showMsg = function(words) {
                 content.innerHTML += '<li><img src="'+arrIcon[role]+'"><span>'+words+'</span></li>';
                 iNow++;
@@ -33,35 +32,29 @@
                     span[iNow].className += 'spanleft';
                 }
             }
-
             function post(URL, PARAMS)
             {
                 var token = $('meta[name="_csrf"]').attr('content');
                 var tokenName = $('meta[name="_csrf_header"]').attr('content');
-                var temp = document.createElement("form");
-                temp.action = URL;
-                temp.method = "post";
-                temp.style.display = "none";
-                for (var x in PARAMS)
-                {
-                    var opt = document.createElement("textarea");
-                    opt.name = x;
-                    opt.value = PARAMS[x];
-                    temp.appendChild(opt);
-                }
-
+                var temp = document.createElement("form");
+                temp.action = URL;
+                temp.method = "post";
+                temp.style.display = "none";
+                for (var x in PARAMS)
+                {
+                    var opt = document.createElement("textarea");
+                    opt.name = x;
+                    opt.value = PARAMS[x];
+                    temp.appendChild(opt);
+                }
                 var csrfField = document.createElement("input");
                 csrfField.name = "_csrf";
                 csrfField.value = token;
-
                 temp.appendChild(csrfField);
-
-                document.body.appendChild(temp);
-                temp.submit();
-                return temp;
+                document.body.appendChild(temp);
+                temp.submit();
+                return temp;
             }
-
-
             icon[0].onclick = function(){
                 if(role==USER){
                     this.src = arrIcon[1];
@@ -71,7 +64,6 @@
                     role = 0;
                 }                
             }
-
             // var socket = io.connect('http://' + "127.0.0.1:5500" );
             // var sid;
             // socket.on('connect', function() {
@@ -83,11 +75,9 @@
             //     console.log(data);
             //     sid = data;
             // });
-
             // socket.on('bot_uttered', function(data) {
             //     console.log(data);
             // })
-
             btn.onclick = function(){
                 role = USER;
                 if(text.value ==''){
@@ -119,7 +109,6 @@
                     //     console.log(res);
                     // });
                     //socket.emit('user_uttered', {message: text.value, session_id: sid});
-
                     // $.post('/tuling', {words: text.value}, function(result) {
                     //     result = jQuery.parseJSON(result);
                     //     role = result.role;
@@ -134,11 +123,10 @@
             }
             role = {{ data|safe }}.role;
             showMsg({{ data|safe }}.content);
-
             
         }
     </script>
-    <title>Document</title>
+    <title>聊天机器人</title>
 </head>
 <body>
     <div id="container">
@@ -151,7 +139,7 @@
 		</ul>
         <div class="footer">
             <div id="user_face_icon">
-                <img src="../static/img/usr.png" alt="">
+                <img src="/static/img/usr.png" alt="">
             </div>
             <form>
                 {% csrf_token %}
